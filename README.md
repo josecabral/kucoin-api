@@ -571,6 +571,60 @@ kc.getActiveOrders({
 
 Returns **[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)** An object containing the API response.
 
+#### getOrderDetails
+
+Get the details of a specific order
+
+**Parameters**
+
+-   `params`: {symbol, type, orderOid}
+**{symbol:   [string]}** The trading pair from this order. (required)
+**{type:     [string]}** The type of order (BUY|SELL).     (required)
+**{orderOid: [string]}** The id of the order.              (required)
+
+**Examples**
+REQUEST:
+
+```javascript
+kc.getOrderDetails(
+    {
+        symbol:   'GAS-NEO',
+        type:     'BUY',
+        orderOid: '9ab18a37aefbe22ed1b406c9'
+    }
+).then(console.log).catch(console.error)
+
+```
+
+RESPONSE:
+```json
+{
+  "coinType":       "GAS",
+  "dealValueTotal": 0,
+  "feeTotal":       0,
+  "userOid":        "9ab18a37aefbe22ed1b406c9",
+  "dealAmount":     0,
+  "coinTypePair":   "NEO",
+  "type":           "BUY",
+  "orderOid":       "9ab18a37aefbe22ed1b406c9",
+  "createdAt":      1521977912000,
+  "dealOrders": {
+    "total":      0,
+    "firstPage":  true,
+    "lastPage":   false,
+    "datas":      [],
+    "currPageNo": 1,
+    "limit":      20,
+    "pageNos":    1
+  },
+  "dealPriceAverage": 0,
+  "orderPrice":       0.0001,
+  "pendingAmount":    2
+}
+```
+
+Returns **[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)** An object containing the API response.
+
 #### cancelOrder
 
 Cancel an order for the specified trading pair.
