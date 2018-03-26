@@ -571,6 +571,46 @@ class Kucoin {
   }
 
   /**
+   * Get the details of a specific order
+   *
+   * @access public
+   * @param {{symbol: string, type: string, orderOid: string}} params
+   *
+   * @return {Promise} An object containing the API response.
+   *
+   * @example
+   *
+   * REQUEST:
+   * kc.getOrderDetails(
+   *   {
+   *     "symbol":   'GAS-NEO',
+   *     "type":     'BUY',
+   *     "orderOid": '9ab18a37aefbe22ed1b406c9',
+   *   }
+   * ).then(console.log).catch(console.error)
+   *
+   * RESPONSE:
+   * {
+   *   "success":   true,
+   *   "code":      "OK",
+   *   "msg":       "Operation succeeded.",
+   *   "timestamp": 1509592278263,
+   *   "data":
+   *     {
+   *       "coinType":       "NEO",
+   *       "dealValueTotal": 0,
+   *       "feeTotal":       0,
+   *       "userOid":        "9ab18a37aefbe22ed1b406c9",
+   *       "dealAmount":     0,
+   *     }
+   * }
+   *
+   */
+  getOrderDetails(params = {}) {
+      return this.doSignedRequest('get', '/order/detail', params);
+  }
+
+  /**
    * Cancel an order for the specified trading pair.
    * @access public
    * @param {{pair: string, txOid: string}} params Order details including the trading pair and transaction ID for the order.
